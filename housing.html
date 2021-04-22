@@ -1,0 +1,169 @@
+<!DOCTYPE HTML>
+<!--
+	Solid State by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Housing Price Predictions</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="index.html">NM</a></h1>
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<div class="inner">
+							<h2>Menu</h2>
+							<ul class="links">
+								<li><a href="index.html">Home</a></li>
+								<li><a href="aboutme.html">About Me</a></li>
+								<!--<li><a href="elements.html">Elements</a></li> -->
+							</ul>
+							<a href="#" class="close">Close</a>
+						</div>
+					</nav>
+
+				<!-- Wrapper -->
+					<section id="wrapper">
+						<header>
+							<div class="inner">
+								<h2>Housing Price Prediction</h2>
+								<p>The housing market is booming and so is the number of things we now consider before buying a house. From things like how old the house is, to neighborhood and even what direction the house is facing, we want to consider it all. The motivation behind this project is to visualize some of these factors and how they have changed. Futhermore, train a model to predict the price of a house based on these features.</p>
+							</div>
+						</header>
+
+						<!-- Content -->
+							<div class="wrapper">
+								<div class="inner">
+							<h1 id="boston-house-price-prediction-omit-in-toc-">Boston House Price Prediction <!-- omit in toc --></h1>
+							<p>Real-estate seems to be really hot currently, with a lot of people looking to make the most of the low interest rates to buy their dream house or invest for the future. </p>
+							
+							<h4 id="-project-status-completed-">-- Project Status: [Completed]</h4>
+							
+							<h1 id="table-of-contents-omit-in-toc-">Table of Contents <!-- omit in toc --></h1>
+							
+							<ul>
+								<li><a href="#synopsis">Synopsis</a></li>
+								<li><a href="#dataset">Dataset</a><ul>
+								<li><a href="#summary-of-the-dataset">Summary of the Dataset</a></li>
+								<li><a href="#eda">Exploratory Analysis</a></li>
+							</ul>
+							</li>
+								<li><a href="#cleaning">Data Cleaning and Feature Engineering</a></li>
+								<li><a href="#ensemble">Model fitting and ensemble</a></li>
+								<li><a href="#conclusion">Conclusion</a></li>
+							</ul>
+							<h1 id="synopsis-a-name-synopsis-a-">Synopsis <a name="synopsis"></a></h1>
+									
+							<p>The hosuing market has been really hot the past few years due to the really low interest rates. In the project we will train a supervised model to predict the house prices in Boston based on parameters such as number of rooms, area, year built, etc. </p>
+							<p>We will use Tableau for the Exploratory analysis and ensembling techniques to predict the final prices!</p>
+							
+							<h1 id="dataset-a-name-dataset-a-">Dataset <a name="dataset"></a></h1>
+									
+							<p>The datasets used for this part of the project can be found on Kaggle: </p>
+							<p><a href="https://www.kaggle.com/c/house-prices-advanced-regression-techniques">https://www.kaggle.com/c/house-prices-advanced-regression-techniques</a></p>
+							
+							<h2 id="summary-of-the-dataset-a-name-summary-of-the-dataset-a-">Summary of the Dataset <a name="summary-of-the-dataset"></a></h2>
+							<ul>
+								<li>The dataset contains over 1460 records and 80 features. These features include things such as number of rooms, lot area and year the house was built.</li>
+								<li>The contains a number of missing and mis-labelled values. Any feature that has more than 80% values missing is removed. </li>
+							</ul>
+							<h2 id="exploratory-analysis-a-name-eda-a-">Exploratory Analysis <a name="eda"></a></h2>
+							<ul>
+							<li><p>Tableau is a widely used software for data analysis, visualization and preparing dashboards. Data exploration for this project was conducted throught Tableau.</p>
+							</li>
+							<li><p>It is typically percieved that houses built in the earlier years had more rooms and were more spacious. This myth is busted as shown by the box-plots below.</p>
+							
+								<p><span class="image center"><img src="images/Year_built_vs_area.PNG" alt="Area"></span></p>
+								<p><span class="image center"><img src="images/Year_built_vs_rooms.PNG" alt="Rooms"></span></p>
+							</li>
+							</ul>
+							<ul>
+							<li><p>Sale price and building foundation do not seem to be too correlated, increasing lot size does increase the sale price as depicted by bigger circles. </p>
+							<p><span class="image center"><img src="images/foundation_price_area.PNG" alt="Foundation"></span></p>
+							</li>
+							<li><p>Did a particular type of roof become old fashioned? Or did a certain style of house come in fashion? As seen from the plot below, Split Foyer and Split Level became more popular around the 1960&#39;s. Gable roof type is the most common across different years and house styles.</p>
+							<p><span class="image center"><img src="images/Year_built_vs_house_roof.PNG" alt="Roof Style"></span></p>
+							</li>
+							<li><p>We are all aware the historically, house prices have been going up. Lets instead try and compare the difference in prices of old and new houses and the condition they are sold in. It is interesting to note that there was a slight dip in the prices for houses built and sold during the economic crisis in 2008.</p>
+							<p><span class="image center"><img src="images/Price_vs_year_condition.PNG" alt="Roof Style"></span></p>
+							</li>
+							</ul>
+							<h1 id="data-cleaning-and-feature-engineering-a-name-cleaning-a-">Data Cleaning and Feature Engineering <a name="cleaning"></a></h1>
+							<ul>
+							<li>The data contained a number of missing values for both numerical and categorical fields. The following methods were used to address the missing values:<ul>
+							<li>Drop columns were majority of the values are missing</li>
+							<li>Drop columns were more almost all the values are of one category</li>
+							<li>Impute values based on linear regression, mean or mode depending on suitability </li>
+							</ul>
+							</li>
+							<li>Feature engineering can add valuable information to the model by using exisiting features. Two new fewatures were created:<ul>
+							<li>Age of the house</li>
+							<li>Total number of bathrooms</li>
+							<li>Categorical values are converted to numerical by using ordinal encoding and one hot encoding.    </li>
+							</ul>
+							</li>
+							</ul>
+							<h2 id="model-fitting-and-ensemble-a-name-ensemble-a-">Model fitting and ensemble <a name="ensemble"></a></h2>
+							<ul>
+							<li>Cross validation is used the ensure that the model is not overfitting on the data.</li>
+							<li><p>The following regression models are used:</p>
+							<ul>
+							<li>Light Gradient Boosting Regressor</li>
+							<li>XGBoost Regressor</li>
+							<li>Gradient Boosting Regressor</li>
+							<li>Random Forest Regressor</li>
+							<li>Stacking CV Regressor</li>
+							</ul>
+							</li>
+							<li><p>The resuls obtained are then plotted and best 3 models are using to create and ensemble which is used in making predictions.</p>
+							</li>
+							</ul>
+							<h2 id="conclusion-a-name-conclusion-a-">Conclusion <a name="conclusion"></a></h2>
+							<p>A prediction RMSE of 0.133 is obtained. This can be further improved by conducting hyperparamter tuning and uisng more models in the ensemble. </p>
+
+					</section>
+
+				<!-- Footer -->
+					<section id="footer">
+						<div class="inner">
+							<h2 class="major">Get in touch</h2>
+							<p>If you have any questions, or would like to get in touch for any reason, please feel free to reach out!</p>
+							<ul class="icons">
+								<li><a href="https://www.linkedin.com/in/nehel/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+								<li><a href="https://github.com/nehelmalhotra" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+								<li><a href="mailto:malhotranehel@gmail.com" class="fas fa-envelope"><span class="label"></span></a></li>
+							</ul>
+							<ul class="copyright">
+								<li>&copy; Untitled Inc. All rights reserved.</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

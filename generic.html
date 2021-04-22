@@ -1,0 +1,232 @@
+<!DOCTYPE HTML>
+<!--
+	Solid State by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Amazon-Music-Reviews</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="index.html">NM</a></h1>
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<div class="inner">
+							<h2>Menu</h2>
+							<ul class="links">
+								<li><a href="index.html">Home</a></li>
+								<li><a href="generic.html">About Me</a></li>
+								<li><a href="elements.html">Elements</a></li>
+							</ul>
+							<a href="#" class="close">Close</a>
+						</div>
+					</nav>
+
+				<!-- Wrapper -->
+					<section id="wrapper">
+						<header>
+							<div class="inner">
+								<h2>Amazon Music Reviews</h2>
+								<p>Amazon has transformed the way we shop and has set high standards with its same day delivery and customer support services. With the transition to online shopping, we rely heavily on images and customer reviews when making a decision on what to buy.</p>
+							</div>
+						</header>
+
+						<!-- Content -->
+							<div class="wrapper">
+								<div class="inner">
+							<h1 id="table-of-contents-">Table of Contents <!-- omit in toc --></h1>
+
+							<ul>
+							  <li><a href="#synopsis">Synopsis</a></li>
+							  <li><a href="#dataset">Dataset</a>
+							    <ul>
+							      <li><a href="#summary-of-the-dataset">Summary of the Dataset</a></li>
+							      <li><a href="#eda">Exploratory Analysis</a></li>
+							    </ul>
+							  </li>
+							  <li><a href="#sentiment">Sentiment Analysis and Review Prediction</a>
+							    <ul>
+							      <li><a href="#classification">Multi-class classifcation</a></li>
+							      <li><a href="#lstm">Neural Networks - LSTM</a></li>
+							    </ul>
+							  </li>
+							  <li><a href="#conclusion">Conclusion</a></li>
+							</ul>
+
+							<h1 id="synopsis-">Synopsis <a name="synopsis"></a></h1>
+
+							<p>Amazon which was once started as an online book-store is now company with a market cap of over $1.5 Trillion and is posied to grow with its annocuments of entry in the drug distribution and telemedicine industry. The crux of the business however still lies in the online reail businees which has grown at a rapid pace due to the pandemic.</p>
+
+							<p>The purpose of this project is to analyze the review data for products on amazon music and train a sentiment analysis model to predict the user ratings to demonstrate the power of NLP and Neural Networks.</p>
+
+							<h1 id="dataset-">Dataset <a name="dataset"></a></h1>
+
+							<p>The datasets used for this part of the project can be found on Kaggle:</p>
+
+							<p>https://www.kaggle.com/c/mie1624winter2021/data</p>
+
+							<h2 id="summary-of-the-dataset-">Summary of the Dataset <a name="summary-of-the-dataset"></a></h2>
+
+							<ul>
+							  <li>The dataset contains twitter id of user and reviewed products. Textual review, summary and a numerical rating between 1-5.</li>
+							  <li>The price column is however stored as strings and contains text in some cases.</li>
+							  <li>The dataset is cleaned by converting the price values to numerical and imputing and missing price value by the median. The textual data from the summary and review is combined and cleaned by removing stop words, punctuations and lemmetizing.</li>
+							</ul>
+
+							<h2 id="exploratory-analysis-">Exploratory Analysis <a name="eda"></a></h2>
+
+							<ul>
+							  <li>From the plot below, it can be seen that majority of the ratings are 4 or 5. Which contradicts the initial itution that people only go to review something when they find it bad or not up to the mark. This might be a more special case since the data is for musical instruments and usually enthusiasts get something only when they know what they are getting.</li>
+							</ul>
+
+							<p><img src="/Amazon-Music-Reviews/images/Distribution_of_ratings.png" alt="Overall Ratings" /></p>
+
+							<ul>
+							  <li>
+							    <p>Most reviewed genre was Pop followed by Alternative Rock.</p>
+
+							    <p><img src="/Amazon-Music-Reviews/images/Distribution_of_ratings_category.png" alt="Genre Ratings" /></p>
+							  </li>
+							  <li>
+							    <p>The following are the most reviewed products and the most active users.</p>
+
+							    <p><img src="/Amazon-Music-Reviews/images/Top_reviewed.png" alt="Most Reviewed" /></p>
+
+							    <p><img src="/Amazon-Music-Reviews/images/Top_reviewers.png" alt="Most Active" /></p>
+							  </li>
+							  <li>
+							    <p>Sentiment distribution of most reviewed products.</p>
+							  </li>
+							</ul>
+
+							<p><img src="/Amazon-Music-Reviews/images/Top_reviewed_sentiments.png" alt="Most Reviewed Sentiment" /></p>
+
+							<ul>
+							  <li>Wordcloud for negative sentiment reviews:
+							<img src="/Amazon-Music-Reviews/images/Negative_wordcloud.png" alt="Negative Sentiment" /></li>
+							</ul>
+
+							<h1 id="sentiment-analysis-and-review-prediction-">Sentiment Analysis and Review Prediction <a name="sentiment"></a></h1>
+
+							<p>Sentiment analysis can be conducted by training a supervised machine learning model on a portion of the review data which can be used to predict a rating that the user might assign just by the analyzing the review text.</p>
+
+							<h2 id="multi-class-classifcation-">Multi-class classifcation <a name="classification"></a></h2>
+
+							<p>In order to do this, a Logistic Regression model and a Multi-class Naive Bayes model is trained on the vectorized review data. The data is vectorized using tf-Idf which counts how frequently a word appears in a review and then penalizes it based on its occurance in the entire set of reviews.</p>
+
+							<ul>
+							  <li>
+							    <p>Logistic Regression model gives a train accuracy of 70%.</p>
+
+							    <p><img src="/Amazon-Music-Reviews/images/logistic_regression_matrix.png" alt="Regression" /></p>
+							  </li>
+							  <li>
+							    <p>Naive Bayes model gives a train accuracy of 73%.</p>
+
+							    <p><img src="/Amazon-Music-Reviews/images/naive_bayes.PNG" alt="Bayes" /></p>
+							  </li>
+							</ul>
+
+							<h2 id="neural-networks---lstm-">Neural Networks - LSTM <a name="classification"></a></h2>
+
+							<p>In order to improve on this accuracy a few step are taken:</p>
+							<ol>
+							  <li>Glove word embeddings are used to vectorize the data. These embeddings are pretrained on a number of features and help classify different words together.</li>
+							  <li>A regression type model is used instead of classification.</li>
+							  <li>Neural networks framework in Keras is used with LSTM. Long Short-Term Memory (LSTM) network is a type of RNN capable of learning order dependence in sequence prediction problems.</li>
+							  <li>In addition to the review text, price and genre are also included as features in the NN. Genre is one-hot-encoded and price is standardized for this.</li>
+							</ol>
+
+							<ul>
+							  <li>Proposed LSTM model
+							<img src="/Amazon-Music-Reviews/images/lstm.PNG" alt="LSTM" /></li>
+							</ul>
+
+							<p>Hyper-parameter tuning is conduced for the model and then the model is fitted on the train dataset.</p>
+
+							<p>An MSE of 0.42 is obtained for the train set and 0.48 for the test set.</p>
+
+							<h2 id="conclusion-">Conclusion <a name="conclusion"></a></h2>
+
+							<p>NLP in combination with Neural Networks has made is possible to analyze textual data and train very accurate models to predict sentiments.</p>
+
+							<ul>
+							  <li>Predicted Reviews</li>
+							</ul>
+
+							<p><img src="/Amazon-Music-Reviews/images/Distribution_of_ratings_predicted.PNG" alt="Predicted" /></p>
+								</div>
+							</div>
+
+					</section>
+
+				<!-- Footer -->
+					<section id="footer">
+						<div class="inner">
+							<h2 class="major">Get in touch</h2>
+							<p>Cras mattis ante fermentum, malesuada neque vitae, eleifend erat. Phasellus non pulvinar erat. Fusce tincidunt, nisl eget mattis egestas, purus ipsum consequat orci, sit amet lobortis lorem lacus in tellus. Sed ac elementum arcu. Quisque placerat auctor laoreet.</p>
+							<form method="post" action="#">
+								<div class="fields">
+									<div class="field">
+										<label for="name">Name</label>
+										<input type="text" name="name" id="name" />
+									</div>
+									<div class="field">
+										<label for="email">Email</label>
+										<input type="email" name="email" id="email" />
+									</div>
+									<div class="field">
+										<label for="message">Message</label>
+										<textarea name="message" id="message" rows="4"></textarea>
+									</div>
+								</div>
+								<ul class="actions">
+									<li><input type="submit" value="Send Message" /></li>
+								</ul>
+							</form>
+							<ul class="contact">
+								<li class="icon solid fa-home">
+									Untitled Inc<br />
+									1234 Somewhere Road Suite #2894<br />
+									Nashville, TN 00000-0000
+								</li>
+								<li class="icon solid fa-phone">(000) 000-0000</li>
+								<li class="icon solid fa-envelope"><a href="#">information@untitled.tld</a></li>
+								<li class="icon brands fa-twitter"><a href="#">twitter.com/untitled-tld</a></li>
+								<li class="icon brands fa-facebook-f"><a href="#">facebook.com/untitled-tld</a></li>
+								<li class="icon brands fa-instagram"><a href="#">instagram.com/untitled-tld</a></li>
+							</ul>
+							<ul class="copyright">
+								<li>&copy; Untitled Inc. All rights reserved.</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

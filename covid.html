@@ -1,0 +1,237 @@
+<!DOCTYPE HTML>
+<!--
+	Solid State by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Covid Analysis and Clustering</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="index.html">NM</a></h1>
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<div class="inner">
+							<h2>Menu</h2>
+							<ul class="links">
+								<li><a href="index.html">Home</a></li>
+								<li><a href="aboutme.html">About Me</a></li>
+							<!--	<li><a href="elements.html">Elements</a></li> -->
+							</ul>
+							<a href="#" class="close">Close</a>
+						</div>
+					</nav>
+
+				<!-- Wrapper -->
+					<section id="wrapper">
+						<header>
+							<div class="inner">
+								<h2>Covid 19 Analysis and Document Clustering</h2>
+								<p>I really hope this project becomes a distant memory and COVID is something we never have to talk about. The current reality is, we are in the middle of a pandemic and we have to do everything we can to help ourselves and the healthcare system.</p>
+							</div>
+						</header>
+
+						<!-- Content -->
+							<div class="wrapper">
+								<div class="inner">
+							<h1 id="covid-19-analysis-and-document-clustering-omit-in-toc-">Covid-19 - Analysis and Document Clustering   <!-- omit in toc --></h1>
+								<p>Millions accross the world have been affected by the Covid-19 pandemic and the only question on everyone&#39;s mind is &quot;When will all this end&quot; and &quot;When will things go back to normal&quot;. As we look for these answers, in this first part of the project we will aim to visualize how it all started and how the number of total cases, recovered cases and deaths have changed during the corse of the pandemic.</p>
+								<p>In the second part, we will try and cluster documents into informative clusters and use LDA to model the cluster topics. The goal behind this is to help sort through the valuable information avialable and make it accessible to the public.</p>
+								<h4 id="-project-status-completed-">-- Project Status: [Completed]</h4>
+								<h1 id="table-of-contents-omit-in-toc-">Table of Contents<!-- omit in toc --></h1>
+								<ul>
+								<li><a href="#synopsis">Synopsis</a></li>
+								<li><a href="#covid-cases-analysis">Part 1 - Covid Cases Analysis</a></li>
+								<li><a href="#dataset">Dataset</a><ul>
+								<li><a href="#summary-of-the-dataset">Summary of the Dataset</a></li>
+								<li><a href="#charts-and-figures">Charts and Figures</a></li>
+								</ul>
+									
+								</li>
+								<li><a href="#covid-document-clustering">Part 2 - Document Clustering</a></li>
+								<li><a href="#dataset2">Dataset</a><ul>
+								<li><a href="#summary-of-the-dataset2">Summary of the Dataset</a></li>
+								<li><a href="#eda">Exploratory Analysis</a></li>
+								<li><a href="#clustering">Dimensionality reduction and clustering</a></li>
+								<li><a href="#lda">LDA</a></li>
+								</ul>
+								</li>
+								<li><a href="#conclusion">Conclusion</a></li>
+								</ul>
+								<h1 id="synopsis-a-name-synopsis-a-">Synopsis <a name="synopsis"></a></h1>
+									
+								<p>Coivd-19 has changed how we live our lives and conduct day to day activies for the forseeable future. What started as a single case in the town of Wuhan, China has grown to become a global pandemic. The best we can do to contribute is to stay indoors, wear a mask and sanitize our hands regularly. </p>
+								<p>The purpose of this project is to visualize the spread of the coronavirus and then use clustering and LDA to conduct topic modelling on over 400,000 scholary articles that have been published about Covid. These articles are a important source of information for a lot of people and having the right article come up at the right time is critical. </p>
+								
+								<h1 id="part-1-covid-cases-analysis-a-name-covid-cases-analysis-a-">Part 1 - Covid Cases Analysis <a name="covid-cases-analysis"></a></h1>
+								<h1 id="dataset-a-name-dataset-a-">Dataset <a name="dataset"></a></h1>
+								<p>The datasets used for this part of the project can be found on Kaggle: </p>
+								
+								<p><a href="https://www.kaggle.com/sudalairajkumar/novel-corona-virus-2019-dataset">https://www.kaggle.com/sudalairajkumar/novel-corona-virus-2019-dataset</a></p>
+								<h2 id="summary-of-the-dataset-a-name-summary-of-the-dataset-a-">Summary of the Dataset <a name="summary-of-the-dataset"></a></h2>
+								
+								<ul>
+								<li>This dataset contains daily reported cases for different countries and provinces. </li>
+								<li>The dataset is in a very useable format, except there are some missing values for Province. Since we are trying to visualize the data country-wise this is not a problem.</li>
+								<li>The dataset also contains country names are that slightly modified than what Plotly expects to see, for example: &#39;Mainland China&#39;. While not all the names can be changed,        Mainland China is converted to China for visulization.</li>
+								</ul>
+								
+								<h2 id="charts-and-figures-a-name-charts-and-figures-a-">Charts and Figures <a name="charts-and-figures"></a></h2>
+								<ul>
+								<li><p>From the plot below, it can be seen how the 1 case in China started to spread across Europe and America and the eventual outbreak in countries like the US and UK.</p>
+								<div class="col-12"><span class="image fit"><img src="images/covid_spread.gif" alt="Covid Spread"></span></div>
+								</li>
+								</ul>
+								
+								<h1 id="part-2-document-clustering-a-name-covid-document-clustering-a-">Part 2 - Document Clustering <a name="covid-document-clustering"></a></h1>
+								<h1 id="dataset-a-name-dataset2-a-">Dataset <a name="dataset2"></a></h1>
+						
+								<p>The datasets used for this part of the project can be found on Kaggle:</p>
+								<p><a href="https://www.kaggle.com/allen-institute-for-ai/CORD-19-research-challenge">https://www.kaggle.com/allen-institute-for-ai/CORD-19-research-challenge</a></p>
+								<p>For document clustering, only the abstract and title will be used due to computational power and time. However using the full text and more data will result in better clustering.</p>
+								
+								<h2 id="summary-of-the-dataset-a-name-summary-of-the-dataset2-a-">Summary of the Dataset <a name="summary-of-the-dataset2"></a></h2>
+								<ul>
+								<li>The metadata.csv file contains information on different scholary articles published on COVID-19. The columns used for this project are:<ul>
+								<li>Title, Abstract and Data Published</ul>
+								<li>The data also contains missing values and duplicates which are removed as part of the pre-processing and cleaning</li>
+								</ul>
+								</li>
+								</ul>
+								</li>
+								</ul>
+		
+								<h2 id="exploratory-analysis-a-name-eda-a-">Exploratory Analysis <a name="eda"></a></h2>
+								
+								<ul>
+								<li>Majority of the artices are published on the new year&#39;s date, however to get a better sense of how the number of articles changed over time, the following trend is observed:</li>
+								</ul>
+								<p><img src="images/Articles_published.png" alt="New Articles Published"></p>
+								
+								<ul>
+								<li>The average length of abstracts is around 2,000 words but there are several outliers where the word count is over 10,000 words.</li>
+								</ul>
+								<p><img src="images/Abstract_length.PNG" alt="Abstract word count"></p>
+								
+								<ul>
+								<li>Of the 50,000 subset, most of the articles are in Enlgish. The distribution of artices in other languages is as follows:</li>
+								</ul>
+								<p><img src="images/Language_distribution.png" alt="Language distribution"></p>
+								
+								<ul>
+								<li>Words like covid, pandemic and virus are removed from the abstract in order to get unique words for different articles to assist in clustering. The following the the word cloud for the articles:</li>
+								</ul>
+								<p><img src="images/Word_cloud_covid.png" alt="Word Cloud"></p>
+
+		
+								</ul>
+								<h2 id="dimensionality-reduction-and-clustering-a-name-clustering-a-">Dimensionality reduction and clustering <a name="clustering"></a></h2>
+								<ul>
+								<li><p>In order to cluster the data using NLP, the data is first cleaned to remove any stopwords, punctuations and lower cased for text matching. Futhermore, the data is lemmetized. Lemmatization is the process of grouping together the different inflected forms of a word so they can be analysed as a single item.</p>
+								</li>
+								<li><p>The data is then vectorized using Tf-idf, which counts the frequency of a words in a given document and then penalizes the word based on its frequency is the overall corpus. </p>
+								</li>
+								<li><p>PCA and SVD are used for dimensionality reduction, keeping only the features that explains 95% of the variance in the data. The first two features are plotted and as expected no apparant clusters can be seen. This is because of the high dimensionality of the data.</p>
+								</li>
+								</ul>
+								<p><img src="images/SVD_components.png" alt="SVD"></p>
+								<ul>
+								<li>k-Means clustering is conducted, where k=15 is found as the optimal number of clusters based on the elbow plot.</li>
+								<li>In order to visualize this, the data is trasformed using t-SNE which helps in visualizing high dimensional data.</li>
+								</ul>
+								<p><img src="images/clustered_svd.PNG" alt="k-Means"></p>
+								<h2 id="lda-topic-modelling-a-name-lda-a-">LDA - Topic Modelling <a name="lda"></a></h2>
+								<ul>
+								<li>LDA is used to model the data into 15 topics. </li>
+								</ul>
+								<table>
+								<thead>
+								<tr>
+								<th>Topics</th>
+								<th></th>
+								</tr>
+								</thead>
+								<tbody>
+								<tr>
+								<td>Risks</td>
+								<td>Vaccine development</td>
+								</tr>
+								<tr>
+								<td>Antibody Testing</td>
+								<td>Drugs</td>
+								</tr>
+								<tr>
+								<td>Healthcare</td>
+								<td>Immune Response</td>
+								</tr>
+								<tr>
+								<td>Existing conditions</td>
+								<td>Respiratory disease</td>
+								</tr>
+								<tr>
+								<td>Country analysis</td>
+								<td>Online Learning</td>
+								</tr>
+								<tr>
+								<td>Parenting and symptoms</td>
+								<td>Distance Measures</td>
+								</tr>
+								<tr>
+								<td>Testing Methods</td>
+								<td>Mental Health</td>
+								</tr>
+								<tr>
+								<td>High risk groups</td>
+								</tr>
+								</tbody>
+								</table>
+								<h2 id="conclusion-a-name-conclusion-a-">Conclusion <a name="conclusion"></a></h2>
+								<p>Supervised learning algorithms can then be trained on pre-clustered data to predict the clusters of new and unseen articles. This is a powerful tool and is currently being used by companies like Google for news clustering.</p>
+								<p>When training a logsitic regression model on the data and 15 clusters, an accuracy score of 0.97 was obtained for the train data and 0.94 for the test/validation data.</p>
+
+
+					</section>
+
+				<!-- Footer -->
+					<section id="footer">
+						<div class="inner">
+							<h2 class="major">Get in touch</h2>
+							<p>If you have any questions, or would like to get in touch for any reason, please feel free to reach out!</p>
+							<ul class="icons">
+								<li><a href="https://www.linkedin.com/in/nehel/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+								<li><a href="https://github.com/nehelmalhotra" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+								<li><a href="mailto:malhotranehel@gmail.com" class="fas fa-envelope"><span class="label"></span></a></li>
+							</ul>
+							<ul class="copyright">
+								<li>&copy; Untitled Inc. All rights reserved.</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</section>
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
